@@ -1,0 +1,14 @@
+57c8fb7afc095e1e79c4f9c9263c984f
+"use strict";
+/**
+ * @format
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+require("react-native");
+const ff = () => {
+    return 2;
+};
+it('renders correctly', () => {
+    expect(ff()).toEqual(2);
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiL1VzZXJzL21vaGFtZWRmb3VhZC9EZXNrdG9wL1lGaXRuZXNzL19fdGVzdHNfXy9BcHAtdGVzdC50c3giLCJtYXBwaW5ncyI6IjtBQUFBOztHQUVHOztBQUVILHdCQUFzQjtBQU90QixNQUFNLEVBQUUsR0FBRSxHQUFHLEVBQUU7SUFDWCxPQUFPLENBQUMsQ0FBQTtBQUNaLENBQUMsQ0FBQTtBQUNELEVBQUUsQ0FBQyxtQkFBbUIsRUFBRSxHQUFHLEVBQUU7SUFDM0IsTUFBTSxDQUFDLEVBQUUsRUFBRSxDQUFDLENBQUMsT0FBTyxDQUFDLENBQUMsQ0FBQyxDQUFBO0FBQ3pCLENBQUMsQ0FBQyxDQUFDIiwibmFtZXMiOltdLCJzb3VyY2VzIjpbIi9Vc2Vycy9tb2hhbWVkZm91YWQvRGVza3RvcC9ZRml0bmVzcy9fX3Rlc3RzX18vQXBwLXRlc3QudHN4Il0sInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogQGZvcm1hdFxuICovXG5cbmltcG9ydCAncmVhY3QtbmF0aXZlJztcbmltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG5pbXBvcnQgQXBwIGZyb20gJy4uL0FwcCc7XG5cbi8vIE5vdGU6IHRlc3QgcmVuZGVyZXIgbXVzdCBiZSByZXF1aXJlZCBhZnRlciByZWFjdC1uYXRpdmUuXG5pbXBvcnQgcmVuZGVyZXIgZnJvbSAncmVhY3QtdGVzdC1yZW5kZXJlcic7XG5cbmNvbnN0IGZmID0oKSA9PiB7XG4gICAgcmV0dXJuIDJcbn1cbml0KCdyZW5kZXJzIGNvcnJlY3RseScsICgpID0+IHtcbiAgZXhwZWN0KGZmKCkpLnRvRXF1YWwoMilcbn0pO1xuIl0sInZlcnNpb24iOjN9

@@ -1,0 +1,11 @@
+230256c9ee15ccce0de849f1904032b2
+"use strict";
+/**
+ * @format
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+require("react-native");
+// it('renders correctly', () => {
+//   renderer.create(<App />);
+// });
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiL1VzZXJzL21vaGFtZWRmb3VhZC9EZXNrdG9wL1lGaXRuZXNzL19fdGVzdHNfXy9BcHAtdGVzdC50c3giLCJtYXBwaW5ncyI6IjtBQUFBOztHQUVHOztBQUVILHdCQUFzQjtBQU90QixrQ0FBa0M7QUFDbEMsOEJBQThCO0FBQzlCLE1BQU0iLCJuYW1lcyI6W10sInNvdXJjZXMiOlsiL1VzZXJzL21vaGFtZWRmb3VhZC9EZXNrdG9wL1lGaXRuZXNzL19fdGVzdHNfXy9BcHAtdGVzdC50c3giXSwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBAZm9ybWF0XG4gKi9cblxuaW1wb3J0ICdyZWFjdC1uYXRpdmUnO1xuaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0JztcbmltcG9ydCBBcHAgZnJvbSAnLi4vQXBwJztcblxuLy8gTm90ZTogdGVzdCByZW5kZXJlciBtdXN0IGJlIHJlcXVpcmVkIGFmdGVyIHJlYWN0LW5hdGl2ZS5cbmltcG9ydCByZW5kZXJlciBmcm9tICdyZWFjdC10ZXN0LXJlbmRlcmVyJztcblxuLy8gaXQoJ3JlbmRlcnMgY29ycmVjdGx5JywgKCkgPT4ge1xuLy8gICByZW5kZXJlci5jcmVhdGUoPEFwcCAvPik7XG4vLyB9KTtcbiJdLCJ2ZXJzaW9uIjozfQ==
