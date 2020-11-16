@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { addTranslationForLanguage, LocalizeContextProps, SingleLanguageTranslation, withLocalize } from 'react-localize-redux';
+import { addTranslationForLanguage, LocalizeContextProps, onMissingTranslationFunction, SingleLanguageTranslation, withLocalize } from 'react-localize-redux';
 import { I18nManager } from 'react-native';
 import RNRestart from 'react-native-restart';
 import { connect, DispatchProp } from 'react-redux';
@@ -32,7 +32,8 @@ class LanguageInitializer extends React.Component<LanguageInitializerProps> {
             languages: Languages,
             options: {
                 renderToStaticMarkup: false,
-                defaultLanguage: code
+                defaultLanguage: code,
+                onMissingTranslation: ({ translationId }) => `${translationId},,`
             }
         })
 
