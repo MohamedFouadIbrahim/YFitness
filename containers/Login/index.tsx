@@ -10,11 +10,13 @@ import { SystemColors } from '../../constants/Colors';
 import { PagePadding, Screen } from '../../constants/Styles';
 import { AuthParamList } from '../../navigation/AuthNavigator';
 import { LoginActions } from '../../redux/LoginRedux';
+import { ILanguageState, ISystemState } from '../../redux/types';
 
 interface LoginProps {
   navigation?: StackNavigationProp<AuthParamList, 'Login'>;
   setIsLoggedIn: (is_logged_in: boolean) => void;
   setMainToken: (token: string) => void;
+  language: ILanguageState
 }
 
 const Login: React.FC<LoginProps> = (props) => {
@@ -62,7 +64,8 @@ const Login: React.FC<LoginProps> = (props) => {
 
 
 
-    setIsloading(true)
+    // setIsloading(true)
+    console.log(props.language)
 
     // props.setIsLoggedIn(true)
 
@@ -166,8 +169,8 @@ const mergeProps = (stateProps: object, { dispatch }: DispatchProp, ownProps: ob
 
 };
 
-// const mapStateToProps = ({ login: { is_logged_in } }: ISystemState) => ({
-//   is_logged_in,
-// });
+const mapStateToProps = ({  language }: ISystemState) => ({
+  language,
+});
 
-export default connect(undefined, undefined, mergeProps)(Login);
+export default connect(mapStateToProps, undefined, mergeProps)(Login);

@@ -15,6 +15,7 @@ const persistConfig = {
 		'Filter',
 		'inspector',
 		'navigation',
+		// 'language'
 	],
 }
 
