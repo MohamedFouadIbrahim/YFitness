@@ -37,11 +37,18 @@ class RootNavigation extends React.Component<RootNavigationProps, RootNavigation
         clearTimeout(this.timer)
     }
 
+    /**
+     * 
+     * <NavigationContainer>
+                    {this.props.is_logged_in ? <MainTab /> : <AuthNavigator />}
+                </NavigationContainer>
+     * 
+     */
     render() {
         if (this.state.isLoaded) {
             return (
                 <NavigationContainer>
-                    {this.props.is_logged_in ? <MainTab /> : <AuthNavigator />}
+                    <MainTab />
                 </NavigationContainer>
             )
         } else {
