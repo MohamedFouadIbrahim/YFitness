@@ -8,13 +8,13 @@ import Finer from "../containers/User/Finder";
 import Profile from "../containers/User/Profile";
 import History from "../containers/User/History";
 import GymDetails from "../containers/User/GymDetails";
-import { Easing, View } from 'react-native';
-import FontedText from '../components/FontedText';
+import RequestsAvailability from "../containers/User/RequestsAvailability";
 
 
 export type FinderParamList = {
     Finder: undefined,
-    GymDetails: undefined
+    GymDetails: undefined,
+    RequestsAvailability: undefined
 }
 
 const Finder_Navigator = createStackNavigator<FinderParamList>();
@@ -27,6 +27,7 @@ const FinderStack: React.FC<Finder_Navigator_Prop> = () => (
     <Finder_Navigator.Navigator headerMode='none' >
         <Finder_Navigator.Screen name={'Finder'} component={Finer} />
         <Finder_Navigator.Screen name={'GymDetails'} component={GymDetails} />
+        <Finder_Navigator.Screen name={'RequestsAvailability'} component={RequestsAvailability} />
     </Finder_Navigator.Navigator>
 )
 
@@ -82,12 +83,14 @@ interface MainTabProps {
 const tabBarVisible = (route: any) => {
     const routeName = route.state ? route.state.routes[route.state.index].name : ''
 
-    if (routeName === 'GymDetails') {
-        return false;
+    switch (routeName) {
+
+        case 'GymDetails':
+        case 'RequestsAvailability':
+            return false
+        default:
+            return true
     }
-
-    return true;
-
 }
 
 

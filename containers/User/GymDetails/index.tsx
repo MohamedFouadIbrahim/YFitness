@@ -65,6 +65,9 @@ const GymDetails: React.FC<GymDetailsProps> = (props) => {
                     justifyContent: 'space-between',
                     paddingHorizontal: PagePadding.largePadding * 2
                 }}
+                onPress={() => {
+                    props.navigation?.navigate('RequestsAvailability')
+                }}
             >
                 <TranslatedText text={'Request'} style={{ fontSize: 17 }} />
 
