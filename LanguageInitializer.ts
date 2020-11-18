@@ -48,10 +48,18 @@ class LanguageInitializer extends React.Component<LanguageInitializerProps> {
             isRTL: currLanguage?.isRTL || false
         })
 
-        if (currLanguage?.isRTL && !I18nManager.isRTL) {
-            I18nManager.forceRTL(true)
-            RNRestart.Restart()
-        }
+        // if (currLanguage?.isRTL && !I18nManager.isRTL) {
+        //     I18nManager.forceRTL(true)
+        //     RNRestart.Restart()
+        //     console.log('resr')
+        // } else {
+        //     I18nManager.forceRTL(false)
+        //     // RNRestart.Restart()
+
+        //     console.log('ss')
+        // }
+        
+        I18nManager.forceRTL(false)
     }
 
     loadDefaultLanguage() {

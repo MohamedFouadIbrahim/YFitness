@@ -1,15 +1,20 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator, BottomTabBarOptions, BottomTabBar } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from "react";
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import { SystemColors } from "../constants/Colors";
-import { PagePadding, PageRadius } from "../constants/Styles";
+import { PagePadding, PageRadius, Screen } from "../constants/Styles";
 import Finer from "../containers/User/Finder";
 import Profile from "../containers/User/Profile";
 import History from "../containers/User/History";
+import GymDetails from "../containers/User/GymDetails";
+import { Easing, View } from 'react-native';
+import FontedText from '../components/FontedText';
+
 
 export type FinderParamList = {
     Finder: undefined,
+    GymDetails: undefined
 }
 
 const Finder_Navigator = createStackNavigator<FinderParamList>();
@@ -21,6 +26,7 @@ interface Finder_Navigator_Prop {
 const FinderStack: React.FC<Finder_Navigator_Prop> = () => (
     <Finder_Navigator.Navigator headerMode='none' >
         <Finder_Navigator.Screen name={'Finder'} component={Finer} />
+        <Finder_Navigator.Screen name={'GymDetails'} component={GymDetails} />
     </Finder_Navigator.Navigator>
 )
 
@@ -62,7 +68,7 @@ const UserHistoryStack: React.FC<UserHistory_Navigator_Prop> = () => (
 
 
 const tabBarIconSize = 22
-
+export const tabBarHeight = 55
 export type MainTabParamList = {
     Finder: undefined,
     UserProfile: undefined,
@@ -73,32 +79,55 @@ interface MainTabProps {
 
 }
 
+const tabBarVisible = (route: any) => {
+    const routeName = route.state ? route.state.routes[route.state.index].name : ''
+
+    if (routeName === 'GymDetails') {
+        return false;
+    }
+
+    return true;
+
+}
+
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
 const MainTab: React.FC<MainTabProps> = () => {
     return (
-        <Tab.Navigator tabBarOptions={{
-            style: {
-                shadowColor: SystemColors.logoColor,
-                shadowOpacity: 1,
-                position: 'absolute',
-                marginHorizontal: PagePadding.largePadding * 2,
-                bottom: 60,
-                height: 55,
-                borderRadius: PageRadius.largeRadius * 2,
-                backgroundColor: SystemColors.lightDarkBG
-            },
-        }} >
+        <Tab.Navigator
+            tabBarOptions={{
+                style: {
+                    shadowColor: SystemColors.logoColor,
+                    shadowOpacity: 1,
+                    position: 'absolute',
+                    marginHorizontal: PagePadding.largePadding * 2,
+                    bottom: 10,
+                    height: tabBarHeight,
+                    borderRadius: PageRadius.largeRadius * 2,
+                    backgroundColor: SystemColors.lightDarkBG,
+                },
+            }
+            } >
+
 
             <Tab.Screen
                 name='Finder'
                 component={FinderStack}
-                options={{
-                    // tabBarLabel: () => <FontedText style={{ top: 20, fontSize: 12 }} >{'Finder'}</FontedText>,
+                options={({ route }) => ({
                     tabBarLabel: () => null,
-                    tabBarIcon: ({ focused }) => (<SimpleLineIcons name='location-pin' size={tabBarIconSize} style={{ top: 14 }} color={focused ? SystemColors.logoColor : 'white'} />)
-                }}
+                    tabBarIcon: ({ focused }) => (<SimpleLineIcons name='location-pin' size={tabBarIconSize} style={{ top: 14 }} color={focused ? SystemColors.logoColor : 'white'} />),
+                    tabBarVisible: tabBarVisible(route),
+                    tabBarVisibilityAnimationConfig: {
+                        hide: {
+                            animation: 'timing',
+                            config: {
+                                delay: 1000,
+                                duration: 1000
+                            }
+                        }
+                    }
+                })}
             />
 
             <Tab.Screen

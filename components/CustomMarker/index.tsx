@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Image, ImageProps, View, Animated, Easing } from "react-native";
+import { Image, ImageProps, View, Animated, Easing, TouchableOpacity } from "react-native";
 import { Marker, MarkerProps } from "react-native-maps";
 import { SystemColors } from "../../constants/Colors";
 import FontedText from "../FontedText";
@@ -8,7 +8,8 @@ interface CustomMarkerProps extends MarkerProps {
     imageProps?: ImageProps,
     imageUrl?: string,
     animationDelay?: number,
-    gymName: string
+    gymName: string,
+    onMarkerPress: ()=> void
 }
 
 const CustomMarker: React.FC<CustomMarkerProps> = (props) => {
@@ -41,11 +42,12 @@ const CustomMarker: React.FC<CustomMarkerProps> = (props) => {
 
     return (
 
-        <Marker coordinate={props.coordinate} style={{ alignItems: 'center', }}>
+
+        <Marker coordinate={props.coordinate} style={{ alignItems: 'center', }} onPress={() => { props.onMarkerPress() }} >
 
             <Animated.View style={[style, { alignItems: 'center', bottom: 40 }]}>
 
-                <FontedText style={{ width: 80, alignSelf: 'center', textAlign: 'center', color: SystemColors.darkBG, marginBottom:5 }} >
+                <FontedText style={{ width: 80, alignSelf: 'center', textAlign: 'center', color: SystemColors.darkBG, marginBottom: 5 }} >
                     {props.gymName}
                 </FontedText>
 
@@ -73,6 +75,7 @@ const CustomMarker: React.FC<CustomMarkerProps> = (props) => {
             </Animated.View>
 
         </Marker>
+
 
     )
 }
