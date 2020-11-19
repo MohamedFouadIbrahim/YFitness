@@ -1,6 +1,6 @@
 import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useEffect } from "react";
-import MapView from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 import CustomMarker from "../../../components/CustomMarker";
 import { FinderParamList } from "../../../navigation/MainTabNavigator";
 import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
@@ -11,10 +11,10 @@ interface FinderProp extends BottomTabNavigationOptions {
 
 const Finer: React.FC<FinderProp> = (props) => {
 
-    useEffect(()=>{
+    useEffect(() => {
         props.tabBarVisible = false
-    },[])
-    
+    }, [])
+
     const GymsApi = [
         {
             gymName: 'Golds Gym',
@@ -52,7 +52,7 @@ const Finer: React.FC<FinderProp> = (props) => {
                     imageProps={{ source: item.gymImage }}
                     animationDelay={index + 1}
                     key={index}
-                    onMarkerPress={() => {  props.navigation.navigate('GymDetails');}}
+                    onMarkerPress={() => { props.navigation.navigate('GymDetails'); }}
                 />
             ))}
         </MapView>

@@ -9,6 +9,7 @@ import Profile from "../containers/User/Profile";
 import History from "../containers/User/History";
 import GymDetails from "../containers/User/GymDetails";
 import RequestsAvailability from "../containers/User/RequestsAvailability";
+import { Platform } from 'react-native';
 
 
 export type FinderParamList = {
@@ -119,7 +120,7 @@ const MainTab: React.FC<MainTabProps> = () => {
                 component={FinderStack}
                 options={({ route }) => ({
                     tabBarLabel: () => null,
-                    tabBarIcon: ({ focused }) => (<SimpleLineIcons name='location-pin' size={tabBarIconSize} style={{ top: 14 }} color={focused ? SystemColors.logoColor : 'white'} />),
+                    tabBarIcon: ({ focused }) => (<SimpleLineIcons name='location-pin' size={tabBarIconSize} style={{ position:'absolute', top: 14 }} color={focused ? SystemColors.logoColor : 'white'} />),
                     tabBarVisible: tabBarVisible(route),
                     tabBarVisibilityAnimationConfig: {
                         hide: {
@@ -137,7 +138,7 @@ const MainTab: React.FC<MainTabProps> = () => {
                 name='UserProfile'
                 component={UserProfileStack}
                 options={{
-                    tabBarIcon: ({ focused }) => (<SimpleLineIcons name='user' size={tabBarIconSize} style={{ top: 14 }} color={focused ? SystemColors.logoColor : 'white'} />),
+                    tabBarIcon: ({ focused }) => (<SimpleLineIcons name='user' size={tabBarIconSize} style={{ position:'absolute', top: 14 }} color={focused ? SystemColors.logoColor : 'white'} />),
                     tabBarLabel: () => null,
                 }}
             />
@@ -146,7 +147,7 @@ const MainTab: React.FC<MainTabProps> = () => {
                 name='UserHistory'
                 component={UserHistoryStack}
                 options={{
-                    tabBarIcon: ({ focused }) => (<SimpleLineIcons name='layers' size={tabBarIconSize} style={{ top: 14 }} color={focused ? SystemColors.logoColor : 'white'} />),
+                    tabBarIcon: ({ focused }) => (<SimpleLineIcons name='layers' size={tabBarIconSize} style={{ position:'absolute', top: 14 }} color={focused ? SystemColors.logoColor : 'white'} />),
                     tabBarLabel: () => null,
                 }}
             />
