@@ -4,7 +4,7 @@ import { Platform, TouchableOpacity, View } from "react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import { SystemColors } from '../../constants/Colors';
-import { PagePadding, Screen } from "../../constants/Styles";
+import { PagePadding } from "../../constants/Styles";
 import FontedText from '../FontedText';
 
 interface HeaderProps {
@@ -47,6 +47,8 @@ const CustomHeader: React.FC<HeaderProps> = ({ leftIcon, headerTitle, rightCompo
                             justifyContent: 'center',
                             alignItems: 'center',
                             paddingVertical: 8,
+                            position:'absolute',
+                            left: PagePadding.mediumPadding
                         }}>
                         <Ionicons
                             // name={`ios-arrow-round-${I18nManager.isRTL ? 'forward' : 'back'}`}
@@ -82,24 +84,15 @@ const CustomHeader: React.FC<HeaderProps> = ({ leftIcon, headerTitle, rightCompo
     const middleComponent = () => {
 
         return (
-            <FontedText style={{ color: SystemColors.darkBG, position:'absolute', left: Screen.width/ 2.5 }} >
+            <FontedText style={{ color: SystemColors.darkBG, fontSize: 15 }} >
                 {headerTitle}
             </FontedText>
         )
 
     }
 
-    const localRightComponent = () => {
-
-        if (rightComponent) {
-            return rightComponent
-        } else {
-            return <View />
-        }
-    }
-
     return (
-        <View style={{ flexDirection: 'row', alignItems: 'center', height: headerHeight, backgroundColor: SystemColors.logoColor, paddingHorizontal: PagePadding.mediumPadding }}  >
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: headerHeight, backgroundColor: SystemColors.logoColor, paddingHorizontal: PagePadding.mediumPadding }}  >
 
             {leftComponent()}
             {middleComponent()}
