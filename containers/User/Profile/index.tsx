@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 import CustomHeader from "../../../components/CustomHeader";
 import FontedText from "../../../components/FontedText";
 import RemoteDataContainer from "../../../components/RemoteDataContainer";
@@ -19,12 +19,13 @@ interface OneRequest {
 }
 
 const UserProfile: React.FC<UserProfileProps> = (props) => (
-        <RemoteDataContainer
-            renderItem={(items: OneRequest) => <FontedText>{items.item.name}</FontedText>}
-            keyExtractor={(item, index) => String(index)}
-            ListHeaderComponent={() => <UserCart Email="momomo@moj.com" Name='mohamed' Points={'50'} Id={'21'} />}
-            contentContainerStyle={{ backgroundColor: SystemColors.darkBG, flexGrow: 1 }}
-        />
+    <ScrollView style={{flexGrow: 1, backgroundColor: SystemColors.darkBG}} >
+
+        <UserCart Email="momomo@moj.com" Name='mohamed' Points={'50'} Id={'21'} image={{ source: require('../../../assets/images/f.jpg') }} />
+
+
+
+    </ScrollView>
 
 )
 export default UserProfile
