@@ -82,12 +82,12 @@ interface MainTabProps {
 }
 
 const tabBarVisible = (route: any) => {
-    const routeName = route.state ? route.state.routes[route.state.index].name : ''
-
+    const routeName = route.state ? route.state.routes[route.state.index].name : route.name
     switch (routeName) {
 
         case 'GymDetails':
         case 'RequestsAvailability':
+        // case 'UserProfile':
             return false
         default:
             return true
@@ -120,7 +120,7 @@ const MainTab: React.FC<MainTabProps> = () => {
                 component={FinderStack}
                 options={({ route }) => ({
                     tabBarLabel: () => null,
-                    tabBarIcon: ({ focused }) => (<SimpleLineIcons name='location-pin' size={tabBarIconSize} style={{ position:'absolute', top: 14 }} color={focused ? SystemColors.logoColor : 'white'} />),
+                    tabBarIcon: ({ focused }) => (<SimpleLineIcons name='location-pin' size={tabBarIconSize} style={{ position: 'absolute', top: 14 }} color={focused ? SystemColors.logoColor : 'white'} />),
                     tabBarVisible: tabBarVisible(route),
                     tabBarVisibilityAnimationConfig: {
                         hide: {
@@ -137,17 +137,18 @@ const MainTab: React.FC<MainTabProps> = () => {
             <Tab.Screen
                 name='UserProfile'
                 component={UserProfileStack}
-                options={{
-                    tabBarIcon: ({ focused }) => (<SimpleLineIcons name='user' size={tabBarIconSize} style={{ position:'absolute', top: 14 }} color={focused ? SystemColors.logoColor : 'white'} />),
+                options={({ route }) => ({
+                    tabBarIcon: ({ focused }) => (<SimpleLineIcons name='user' size={tabBarIconSize} style={{ position: 'absolute', top: 14 }} color={focused ? SystemColors.logoColor : 'white'} />),
                     tabBarLabel: () => null,
-                }}
+                    tabBarVisible: tabBarVisible(route),
+                })}
             />
 
             <Tab.Screen
                 name='UserHistory'
                 component={UserHistoryStack}
                 options={{
-                    tabBarIcon: ({ focused }) => (<SimpleLineIcons name='layers' size={tabBarIconSize} style={{ position:'absolute', top: 14 }} color={focused ? SystemColors.logoColor : 'white'} />),
+                    tabBarIcon: ({ focused }) => (<SimpleLineIcons name='layers' size={tabBarIconSize} style={{ position: 'absolute', top: 14 }} color={focused ? SystemColors.logoColor : 'white'} />),
                     tabBarLabel: () => null,
                 }}
             />

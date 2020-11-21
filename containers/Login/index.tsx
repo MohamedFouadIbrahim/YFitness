@@ -65,9 +65,9 @@ const Login: React.FC<LoginProps> = (props) => {
 
 
     // setIsloading(true)
-    console.log(props.language)
+    // console.log(props.language)
 
-    // props.setIsLoggedIn(true)
+    props.setIsLoggedIn(true)
 
     // if (!Email || !isValidEmail(Email)) {
     //   return showToast('Please Enter Correct Email ..')
