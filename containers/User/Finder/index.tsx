@@ -1,15 +1,25 @@
 import { StackNavigationProp } from "@react-navigation/stack";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MapView, { Marker } from "react-native-maps";
 import CustomMarker from "../../../components/CustomMarker";
 import { FinderParamList } from "../../../navigation/MainTabNavigator";
 import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
+import { TouchableOpacity } from "react-native";
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+import { PagePadding, PageRadius } from "../../../constants/Styles";
+import { SystemColors } from "../../../constants/Colors";
+import { getCurrentLocation } from "../../../utils/Location";
 
 interface FinderProp extends BottomTabNavigationOptions {
     navigation: StackNavigationProp<FinderParamList, 'Finder'>,
 }
 
 const Finer: React.FC<FinderProp> = (props) => {
+
+    const [currentRegion, setCurrentRegion] = useState({
+        latitude: 31.2001,
+        longitude: 29.9187
+    })
 
     useEffect(() => {
         props.tabBarVisible = false
@@ -36,9 +46,8 @@ const Finer: React.FC<FinderProp> = (props) => {
     return (
 
         <MapView
-            initialRegion={{
-                latitude: 31.2001,
-                longitude: 29.9187,
+            region={{
+                ...currentRegion,
                 latitudeDelta: 5,
                 longitudeDelta: 5
             }}
@@ -55,6 +64,25 @@ const Finer: React.FC<FinderProp> = (props) => {
                     onMarkerPress={() => { props.navigation.navigate('GymDetails'); }}
                 />
             ))}
+
+            <TouchableOpacity
+                style={{
+                    position: 'absolute',
+                    right: PagePadding.mediumPadding,
+                    top: PagePadding.mediumPadding,
+                    backgroundColor: 'white',
+                    padding: PagePadding.smallPadding,
+                    borderRadius: (PageRadius.largeRadius * 10)
+                }}
+                onPress={() => {
+                    getCurrentLocation((region) => {
+                        setCurrentRegion({ ...region.coords });
+                    })
+                }}
+            >
+                <SimpleLineIcons name='location-pin' size={22} color={SystemColors.logoColor} />
+            </TouchableOpacity>
+
         </MapView>
 
     )
