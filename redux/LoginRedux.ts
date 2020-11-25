@@ -37,7 +37,7 @@ export const LoginActions = { // Ttry to return here
 		dispatch({ type: loginActionTypes.SET_MAIN_TOKEN, main_token })
 	},
 	setIsGym: (dispatch: Dispatch, isGym: boolean) => {
-		dispatch({ type: loginActionTypes.SET_MAIN_TOKEN, isGym })
+		dispatch({ type: loginActionTypes.SET_IS_GYM, isGym })
 	}
 
 };

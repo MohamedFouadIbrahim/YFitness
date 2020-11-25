@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { connect } from 'react-redux';
 import AuthNavigator from "./AuthNavigator";
 import { ILoginState, ISystemState } from '../redux/types';
-import MainTab from './MainTabNavigator';
+import {GymMainTab,UserMainTab} from './MainTabNavigator';
 import SplashScreen from '../containers/SplashScreen';
 
 interface RootNavigationProps extends ILoginState {
@@ -37,11 +37,29 @@ class RootNavigation extends React.Component<RootNavigationProps, RootNavigation
         clearTimeout(this.timer)
     }
 
+    detectUserOrGym = () => {
+
+        const { 
+            isGym
+        } = this.props
+
+        if(isGym) {
+            return (
+                <GymMainTab />
+            )
+        } else {
+            return (
+                <UserMainTab />
+            )
+        }
+        
+    }
+
     render() {
         if (this.state.isLoaded) {
             return (
                 <NavigationContainer>
-                    {this.props.is_logged_in ? <MainTab /> : <AuthNavigator />}
+                    {this.props.is_logged_in ? this.detectUserOrGym() : <AuthNavigator />}
                 </NavigationContainer>
             )
         } else {
@@ -53,8 +71,9 @@ class RootNavigation extends React.Component<RootNavigationProps, RootNavigation
     }
 }
 
-const mapStateToProps = ({ login: { is_logged_in } }: ISystemState) => ({
-    is_logged_in
+const mapStateToProps = ({ login: { is_logged_in, isGym } }: ISystemState) => ({
+    is_logged_in,
+    isGym
 })
 
 export default connect(mapStateToProps)(RootNavigation)

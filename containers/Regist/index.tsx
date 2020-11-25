@@ -8,13 +8,18 @@ import CustomSwitch from '../../components/CustomSwitch';
 import { SystemColors } from '../../constants/Colors';
 import { PagePadding } from '../../constants/Styles';
 import { LoginActions } from '../../redux/LoginRedux';
+import { ISystemState } from '../../redux/types';
 import { UserRegist } from '../../services/UserServices';
 
 interface RegistProps {
 
+    setIsLoggedIn: (isLogin: boolean) => void,
+    setIsGym: (isGym: boolean) => void,
+    setMainToken: (token: string) => void,
+    isGym: boolean
 }
 
-const Regist: React.FC<RegistProps> = () => {
+const Regist: React.FC<RegistProps> = (props) => {
 
     const [isGym, setIsGym] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
@@ -75,9 +80,9 @@ const Regist: React.FC<RegistProps> = () => {
                     }} />
 
                 <CustomButton
-                    animated
+                    
                     text={'Regist'}
-                    isLoading={isLoading}
+                    isLoading={false}
                     style={{
                         marginTop: PagePadding.largePadding,
                         alignSelf: 'center'
@@ -87,6 +92,15 @@ const Regist: React.FC<RegistProps> = () => {
                         startLogoAnimatios()
                         setIsLoading(true)
 
+                        if(isGym) {
+                            props.setIsGym(isGym)
+                        }
+                        props.setIsLoggedIn(true)
+                        // setTimeout(() => {
+                        //     console.log(props.isGym)    
+                        // }, 1000);
+                        
+                        // props.setIsLoggedIn(true)
                         // UserRegist(name, email, password, res => {
                         //     console.log(res.data)
                         //     setIsLoading(false)
@@ -117,8 +131,8 @@ const mergeProps = (stateProps: object, { dispatch }: DispatchProp, ownProps: ob
 
 };
 
-// const mapStateToProps = ({ login: { is_logged_in } }: ISystemState) => ({
-//   is_logged_in,
-// });
+const mapStateToProps = ({ login: { isGym } }: ISystemState) => ({
+    isGym,
+});
 
-export default connect(undefined, undefined, mergeProps)(Regist);
+export default connect(mapStateToProps, undefined, mergeProps)(Regist);

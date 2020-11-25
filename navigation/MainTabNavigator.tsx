@@ -1,15 +1,15 @@
-import { createBottomTabNavigator, BottomTabBarOptions, BottomTabBar } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from "react";
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import { SystemColors } from "../constants/Colors";
-import { PagePadding, PageRadius, Screen } from "../constants/Styles";
+import { PagePadding, PageRadius } from "../constants/Styles";
 import Finer from "../containers/User/Finder";
-import Profile from "../containers/User/Profile";
-import History from "../containers/User/History";
 import GymDetails from "../containers/User/GymDetails";
+import History from "../containers/User/History";
+import Profile from "../containers/User/Profile";
+import GymHistory from "../containers/Gym/History";
 import RequestsAvailability from "../containers/User/RequestsAvailability";
-import { Platform } from 'react-native';
 
 
 export type FinderParamList = {
@@ -71,15 +71,25 @@ const UserHistoryStack: React.FC<UserHistory_Navigator_Prop> = () => (
 
 const tabBarIconSize = 22
 export const tabBarHeight = 55
-export type MainTabParamList = {
+
+export type UserMainTabParamList = {
     Finder: undefined,
     UserProfile: undefined,
     UserHistory: undefined
 }
 
-interface MainTabProps {
+export type GymMainTabParamList = {
+    GymHistory: undefined
+}
+
+interface UserMainTabProps {
 
 }
+
+interface GymMainTabProps {
+
+}
+
 
 const tabBarVisible = (route: any) => {
     const routeName = route.state ? route.state.routes[route.state.index].name : route.name
@@ -95,11 +105,13 @@ const tabBarVisible = (route: any) => {
 }
 
 
-const Tab = createBottomTabNavigator<MainTabParamList>();
+const UserTab = createBottomTabNavigator<UserMainTabParamList>();
 
-const MainTab: React.FC<MainTabProps> = () => {
+const GymTab = createBottomTabNavigator<GymMainTabParamList>();
+
+export const UserMainTab: React.FC<UserMainTabProps> = () => {
     return (
-        <Tab.Navigator
+        <UserTab.Navigator
             tabBarOptions={{
                 style: {
                     shadowColor: SystemColors.logoColor,
@@ -115,7 +127,7 @@ const MainTab: React.FC<MainTabProps> = () => {
             } >
 
 
-            <Tab.Screen
+            <UserTab.Screen
                 name='Finder'
                 component={FinderStack}
                 options={({ route }) => ({
@@ -134,7 +146,7 @@ const MainTab: React.FC<MainTabProps> = () => {
                 })}
             />
 
-            <Tab.Screen
+            <UserTab.Screen
                 name='UserProfile'
                 component={UserProfileStack}
                 options={({ route }) => ({
@@ -144,7 +156,7 @@ const MainTab: React.FC<MainTabProps> = () => {
                 })}
             />
 
-            <Tab.Screen
+            <UserTab.Screen
                 name='UserHistory'
                 component={UserHistoryStack}
                 options={{
@@ -153,8 +165,27 @@ const MainTab: React.FC<MainTabProps> = () => {
                 }}
             />
 
-        </Tab.Navigator>
+        </UserTab.Navigator>
     )
 }
 
-export default MainTab
+export const GymMainTab: React.FC<GymMainTabProps> = () => {
+    return (
+        <GymTab.Navigator>
+
+
+            <GymTab.Screen
+                name='GymHistory'
+                component={GymHistory}
+                options={({ route }) => ({
+                    tabBarLabel: () => null,
+                    tabBarIcon: ({ focused }) => (<SimpleLineIcons name='layers' size={tabBarIconSize} color={focused ? SystemColors.logoColor : 'white'} />)
+                })}
+
+            />
+
+
+        </GymTab.Navigator>
+    )
+}
+
