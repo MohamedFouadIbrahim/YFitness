@@ -8,6 +8,7 @@ import Finer from "../containers/User/Finder";
 import GymDetails from "../containers/User/GymDetails";
 import History from "../containers/User/History";
 import Profile from "../containers/User/Profile";
+import GymProfile from "../containers/Gym/Profile";
 import GymHistory from "../containers/Gym/History";
 import RequestsAvailability from "../containers/User/RequestsAvailability";
 
@@ -54,6 +55,7 @@ const UserProfileStack: React.FC<UserProfile_Navigator_Prop> = () => (
 
 export type UserHistoryParamList = {
     UserHistory: undefined,
+    GymProfile: undefined
 }
 
 const UserHistory_Navigator = createStackNavigator<UserHistoryParamList>();
@@ -97,7 +99,7 @@ const tabBarVisible = (route: any) => {
 
         case 'GymDetails':
         case 'RequestsAvailability':
-        // case 'UserProfile':
+            // case 'UserProfile':
             return false
         default:
             return true
@@ -173,17 +175,23 @@ export const GymMainTab: React.FC<GymMainTabProps> = () => {
     return (
         <GymTab.Navigator>
 
-
             <GymTab.Screen
                 name='GymHistory'
                 component={GymHistory}
                 options={({ route }) => ({
                     tabBarLabel: () => null,
-                    tabBarIcon: ({ focused }) => (<SimpleLineIcons name='layers' size={tabBarIconSize} color={focused ? SystemColors.logoColor : 'white'} />)
+                    tabBarIcon: ({ focused }) => (<SimpleLineIcons name='layers' size={tabBarIconSize} color={focused ? SystemColors.logoColor : SystemColors.lightDarkBG} />)
                 })}
-
             />
 
+            <GymTab.Screen
+                name='GymProfile'
+                component={GymProfile}
+                options={({ route }) => ({
+                    tabBarLabel: () => null,
+                    tabBarIcon: ({ focused }) => (<SimpleLineIcons name='user' size={tabBarIconSize} color={focused ? SystemColors.logoColor : SystemColors.lightDarkBG} />)
+                })}
+            />
 
         </GymTab.Navigator>
     )

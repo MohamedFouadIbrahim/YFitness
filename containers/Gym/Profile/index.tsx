@@ -3,18 +3,18 @@ import { ScrollView } from "react-native";
 import ArrowItem from "../../../components/ArrowItem";
 import FontedText from "../../../components/FontedText";
 import { SystemColors } from "../../../constants/Colors";
-import UserCart from "./UserCart";
+import GymProfileCart from "./GymProfileCart";
 import Entypo from 'react-native-vector-icons/Entypo';
 import { LoginActions } from "../../../redux/LoginRedux";
 import { DispatchProp, connect, MapDispatchToPropsParam } from 'react-redux';
 import { AnyAction } from "redux";
 
-interface UserProfileProps {
+interface GymProfileProps {
     setIsLoggedIn: (isLogin: boolean) => void,
     setIsGym: (isGym: boolean) => void
 }
 
-const UserProfile: React.FC<UserProfileProps> = (props) => {
+const GymProfile: React.FC<GymProfileProps> = (props) => {
 
     const { setIsLoggedIn } = props;
 
@@ -24,7 +24,7 @@ const UserProfile: React.FC<UserProfileProps> = (props) => {
 
         <ScrollView style={{ flexGrow: 1, backgroundColor: SystemColors.darkBG }} >
 
-            <UserCart Email="momomo@moj.com" Name='mohamed' Points={'50'} Id={'21'} image={{ source: require('../../../assets/images/f.jpg') }} />
+            <GymProfileCart Email="YFitness@YFitness.com" Name='YFitness Gym' Points={'50'} Id={'21'} image={{ source: require('../../../assets/images/f.jpg') }} />
 
             <ArrowItem title='Points' icon={() => (<FontedText style={{ fontSize: 18 }} >{'50 Y'}</FontedText>)} TouchableOpacityProps={{ disabled: true }} />
 
@@ -48,4 +48,4 @@ const mergeProps = (stateProps: object, { dispatch }: DispatchProp, ownProps: ob
 };
 
 
-export default connect(undefined, undefined, mergeProps)(UserProfile)
+export default connect(undefined, undefined, mergeProps)(GymProfile)
